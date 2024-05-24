@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package usuario;
+
+option go_package = "./";
+
+message ZrpcUmMethodRequest {
+  string Nome = 1;
+}
+
+message ZrpcUmMethodResponse {
+  string Frase = 1;
+}
+
+service ZrpcUmService {
+  rpc ZrpcUmMethod(ZrpcUmMethodRequest) returns (ZrpcUmMethodResponse);
+}

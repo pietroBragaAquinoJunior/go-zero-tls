@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package usuario;
+
+option go_package = "./";
+
+message ZrpcDoisMethodRequest {
+  string Nome = 1;
+}
+
+message ZrpcDoisMethodResponse {
+  string Frase = 1;
+}
+
+service ZrpcDoisService {
+  rpc ZrpcDoisMethod(ZrpcDoisMethodRequest) returns (ZrpcDoisMethodResponse);
+}
