@@ -3,8 +3,8 @@ package logic
 import (
 	"context"
 
-	"zrpc-aula-2/common/pb"
-	"zrpc-aula-2/zrpc-dois/internal/svc"
+	"go-zero-tls/common/pb"
+	"go-zero-tls/zrpc-dois/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -1,6 +1,6 @@
 package svc
 
-import "zrpc-aula-2/zrpc-dois/internal/config"
+import "go-zero-tls/zrpc-dois/internal/config"
 
 type ServiceContext struct {
 	Config config.Config

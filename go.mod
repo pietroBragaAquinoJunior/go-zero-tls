@@ -1,4 +1,4 @@
-module zrpc-aula-2
+module go-zero-tls
 
 go 1.22
 

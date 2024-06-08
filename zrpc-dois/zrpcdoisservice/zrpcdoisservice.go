@@ -6,7 +6,7 @@ package zrpcdoisservice
 import (
 	"context"
 
-	"zrpc-aula-2/common/pb"
+	"go-zero-tls/common/pb"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

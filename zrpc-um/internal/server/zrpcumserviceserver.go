@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"zrpc-aula-2/common/pb"
-	"zrpc-aula-2/zrpc-um/internal/logic"
-	"zrpc-aula-2/zrpc-um/internal/svc"
+	"go-zero-tls/common/pb"
+	"go-zero-tls/zrpc-um/internal/logic"
+	"go-zero-tls/zrpc-um/internal/svc"
 )
 
 type ZrpcUmServiceServer struct {
