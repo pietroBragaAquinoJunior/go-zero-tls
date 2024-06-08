@@ -1,4 +1,5 @@
 Name: zrpcdois.rpc
+Mode: "dev"
 ListenOn: 0.0.0.0:8081
 #Etcd:
 #  Hosts:
