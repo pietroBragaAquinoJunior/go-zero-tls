@@ -2,15 +2,12 @@ goctl rpc protoc ./protos/zrpc-um.proto --go_out=./common/pb --go-grpc_out=./com
 
 goctl rpc protoc ./protos/zrpc-dois.proto --go_out=./common/pb --go-grpc_out=./common/pb --zrpc_out=./zrpc-dois
 
-# Gerar chave privada
-openssl genrsa -out server.key 2048
 
-# Gerar certificado autoassinado
-openssl req -new -x509 -key server.key -out server.crt -days 365
+# Chave e Certificado Auto-assinado
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./tls/server.key -out ./tls/server.crt -config ./tls/openssl.cnf
 
-Alguns comandos úteis na raiz do projeto
-grpcurl -insecure -import-path ./protos -proto zrpc-dois.proto localhost:8081 list
 
-grpcurl -insecure -import-path ./protos -proto zrpc-dois.proto localhost:8081 list usuario.ZrpcDoisService
+# Fazer a chamada pro método com TLS
+grpcurl -cacert tls/server.crt -import-path ./protos -proto zrpc-dois.proto -d "{\"Nome\":\"pietro\"}" localhost:8081 usuario.ZrpcDoisService.ZrpcDoisMethod
 
-grpcurl -insecure -import-path ./protos -proto zrpc-dois.proto -d '{"Nome": "pietro"}' localhost:8081 usuario.ZrpcDoisService.ZrpcDoisMethod
+grpcurl -cacert tls/server.crt -import-path ./protos -proto zrpc-um.proto -d "{\"Nome\":\"pietro\"}" localhost:8080 usuario.ZrpcUmService.ZrpcUmMethod

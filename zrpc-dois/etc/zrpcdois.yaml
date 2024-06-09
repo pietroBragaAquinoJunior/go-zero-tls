@@ -1,6 +1,8 @@
 Name: zrpcdois.rpc
-Mode: "dev"
 ListenOn: 0.0.0.0:8081
+TLS:
+  CertFile: "../tls/server.crt"
+  KeyFile: "../tls/server.key" # apenas se necessário
 #Etcd:
 #  Hosts:
 #  - 127.0.0.1:2379

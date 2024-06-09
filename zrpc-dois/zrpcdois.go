@@ -7,6 +7,8 @@ import (
 	"go-zero-tls/zrpc-dois/internal/config"
 	"go-zero-tls/zrpc-dois/internal/server"
 	"go-zero-tls/zrpc-dois/internal/svc"
+	"google.golang.org/grpc/credentials"
+	"log"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -24,10 +26,10 @@ func main() {
 	conf.MustLoad(*configFile, &c)
 	ctx := svc.NewServiceContext(c)
 
-	//creds, err := credentials.NewServerTLSFromFile("../server.crt", "../server.key")
-	//if err != nil {
-	//	log.Fatalf("Failed to load TLS credentials: %v", err)
-	//}
+	creds, err := credentials.NewServerTLSFromFile(c.TLS.CertFile, c.TLS.KeyFile)
+	if err != nil {
+		log.Fatalf("Failed to load TLS credentials: %v", err)
+	}
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		__.RegisterZrpcDoisServiceServer(grpcServer, server.NewZrpcDoisServiceServer(ctx))
@@ -38,7 +40,7 @@ func main() {
 	})
 
 	defer s.Stop()
-	//s.AddOptions(grpc.Creds(creds))
+	s.AddOptions(grpc.Creds(creds))
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()

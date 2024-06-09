@@ -4,6 +4,9 @@ ListenOn: 0.0.0.0:8080
 #  Hosts:
 #  - 127.0.0.1:2379
 #  Key: zrpcum.rpc
+TLS:
+  CertFile: "../tls/server.crt"
+  KeyFile: "../tls/server.key" # apenas se necessário
 ZrpcDoisClientConf:
   Endpoints:
     - "0.0.0.0:8081"
